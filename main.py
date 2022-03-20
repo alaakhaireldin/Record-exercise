@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+from requests.auth import HTTPDigestAuth
 
 gender = "female"
 weight = 65
@@ -42,6 +43,7 @@ for exercise in result['exercises']:
             "calories": exercise['nf_calories']
         }
     }
+    headers_sheet = {'authorization': 'Basic YWxhYToxMjM0NTY='}
     # print(row_parameters)
-    request = requests.post(rows_endpoint, json=row_parameters)
+    request = requests.post(rows_endpoint, json=row_parameters, headers=headers_sheet)
     print(request.text)
